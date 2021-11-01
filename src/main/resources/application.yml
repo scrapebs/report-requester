@@ -1,0 +1,6 @@
+kafka:
+    producer:
+        topic: report-request
+        sender-id: report-requester
+        sender-name: report-requester
+
