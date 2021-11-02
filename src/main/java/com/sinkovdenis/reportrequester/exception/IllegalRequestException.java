@@ -1,6 +1,6 @@
 package com.sinkovdenis.reportrequester.exception;
 
-import com.sinkovdenis.reportrequester.model.ReportRequest;
+import com.sinkovdenis.reportrequester.model.GenericReportRequest;
 
 import static com.sinkovdenis.reportrequester.exception.ErrorMessages.ILLEGAL_REQUEST_MESSAGE;
 
@@ -11,7 +11,7 @@ public class IllegalRequestException extends GenericReportRequesterException {
         super(ILLEGAL_REQUEST_MESSAGE + message, ErrorCodes.ILLEGAL_REQUEST);
     }
 
-    public IllegalRequestException(ReportRequest request) {
+    public IllegalRequestException(GenericReportRequest request) {
         super(ILLEGAL_REQUEST_MESSAGE + request.toString(), ErrorCodes.ILLEGAL_REQUEST);
     }
 

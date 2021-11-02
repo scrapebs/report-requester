@@ -2,7 +2,7 @@ package com.sinkovdenis.reportrequester.publisher;
 
 import com.sinkovdenis.reportrequester.configuration.kafka.KafkaAdditionalHeaders;
 import com.sinkovdenis.reportrequester.configuration.properties.RequestPublisherConfiguration;
-import com.sinkovdenis.reportrequester.model.ReportRequest;
+import com.sinkovdenis.reportrequester.model.GenericReportRequest;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -20,12 +20,12 @@ public class ReportRequestPublisher {
     private final KafkaTemplate<Object, Object> kafkaTemplate;
     private final RequestPublisherConfiguration configuration;
 
-    public void publish(@NonNull ReportRequest reportRequest) {
+    public void publish(@NonNull GenericReportRequest reportRequest) {
         kafkaTemplate.send(buildMessage(reportRequest));
         this.kafkaTemplate.flush();
     }
 
-    Message<ReportRequest> buildMessage(@NonNull ReportRequest event) {
+    Message<GenericReportRequest> buildMessage(@NonNull GenericReportRequest event) {
         return MessageBuilder.withPayload(event)
                 .setHeader(KafkaHeaders.TOPIC, configuration.getTopic())
                 .setHeader(KafkaAdditionalHeaders.SENDER_ID, configuration.getSenderId())

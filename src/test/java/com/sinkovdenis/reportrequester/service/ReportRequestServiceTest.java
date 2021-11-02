@@ -1,6 +1,8 @@
 package com.sinkovdenis.reportrequester.service;
 
-import com.sinkovdenis.reportrequester.model.ReportRequest;
+import com.sinkovdenis.reportrequester.model.ByDateReportRequest;
+import com.sinkovdenis.reportrequester.model.ByIdsReportRequest;
+import com.sinkovdenis.reportrequester.model.GenericReportRequest;
 import com.sinkovdenis.reportrequester.publisher.ReportRequestPublisher;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,14 +19,23 @@ public class ReportRequestServiceTest {
     private ReportRequestPublisher publisher;
 
     @Mock
-    private ReportRequest reportRequest;
+    private ByDateReportRequest byDateReportRequest;
+
+    @Mock
+    private ByIdsReportRequest byIdsReportRequest;
 
     @InjectMocks
     private ReportRequestService service;
 
     @Test
-    public void testRequest() {
-        service.request(reportRequest);
-        verify(publisher).publish(reportRequest);
+    public void testRequest_byDate() {
+        service.requestReport(byDateReportRequest);
+        verify(publisher).publish(byDateReportRequest);
+    }
+
+    @Test
+    public void testRequest_byIds() {
+        service.requestReport(byIdsReportRequest);
+        verify(publisher).publish(byIdsReportRequest);
     }
 }

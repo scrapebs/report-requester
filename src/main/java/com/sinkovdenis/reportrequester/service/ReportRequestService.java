@@ -1,6 +1,6 @@
 package com.sinkovdenis.reportrequester.service;
 
-import com.sinkovdenis.reportrequester.model.ReportRequest;
+import com.sinkovdenis.reportrequester.model.GenericReportRequest;
 import com.sinkovdenis.reportrequester.publisher.ReportRequestPublisher;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ public class ReportRequestService {
 
     private final ReportRequestPublisher publisher;
 
-    public void request(ReportRequest request) {
+    public void requestReport(GenericReportRequest request) {
         publisher.publish(request);
     }
 }

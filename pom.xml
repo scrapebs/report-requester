@@ -12,7 +12,7 @@
 	<artifactId>report-requester</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>report-requester</name>
-	<description>Get and send into kafka topic requests to process report</description>
+	<description>Get by REST and send into kafka request to process report</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -28,6 +28,10 @@
 		<dependency>
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
 		<dependency>

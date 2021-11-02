@@ -2,7 +2,7 @@ package com.sinkovdenis.reportrequester.publisher;
 
 import com.sinkovdenis.reportrequester.configuration.kafka.KafkaAdditionalHeaders;
 import com.sinkovdenis.reportrequester.configuration.properties.RequestPublisherConfiguration;
-import com.sinkovdenis.reportrequester.model.ReportRequest;
+import com.sinkovdenis.reportrequester.model.GenericReportRequest;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,10 +28,10 @@ public class ReportRequestPublisherTest {
     private RequestPublisherConfiguration configuration;
 
     @Mock
-    private ReportRequest reportRequest;
+    private GenericReportRequest reportRequest;
 
     @Mock
-    private Message<ReportRequest> message;
+    private Message<GenericReportRequest> message;
 
     @Spy
     @InjectMocks
@@ -55,7 +55,7 @@ public class ReportRequestPublisherTest {
     public void testBuildMessage() {
         doReturn("name").when(configuration).getSenderName();
         doReturn("id").when(configuration).getSenderId();
-        Message<ReportRequest> message = publisher.buildMessage(reportRequest);
+        Message<GenericReportRequest> message = publisher.buildMessage(reportRequest);
         assertThat(message.getHeaders().get(KafkaAdditionalHeaders.SENDER_NAME)).isEqualTo("name");
         assertThat(message.getHeaders().get(KafkaAdditionalHeaders.SENDER_ID)).isEqualTo("id");
         assertThat(message.getHeaders().get(KafkaAdditionalHeaders.MESSAGE_ID).toString()).isNotEmpty();
