@@ -21,8 +21,7 @@ public class ReportRequestPublisher {
     private final RequestPublisherConfiguration configuration;
 
     public void publish(@NonNull GenericReportRequest reportRequest) {
-        kafkaTemplate.send(buildMessage(reportRequest));
-        this.kafkaTemplate.flush();
+        kafkaTemplate.executeInTransaction(operation -> operation.send(buildMessage(reportRequest)));
     }
 
     Message<GenericReportRequest> buildMessage(@NonNull GenericReportRequest event) {
