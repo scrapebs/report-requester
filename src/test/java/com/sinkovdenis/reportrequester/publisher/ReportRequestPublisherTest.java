@@ -1,7 +1,7 @@
 package com.sinkovdenis.reportrequester.publisher;
 
 import com.sinkovdenis.reportrequester.configuration.kafka.KafkaAdditionalHeaders;
-import com.sinkovdenis.reportrequester.configuration.properties.RequestPublisherConfiguration;
+import com.sinkovdenis.reportrequester.configuration.properties.RequestPublisherProperties;
 import com.sinkovdenis.reportrequester.model.GenericReportRequest;
 
 import org.junit.Test;
@@ -15,6 +15,7 @@ import org.springframework.messaging.Message;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowableOfType;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 
@@ -25,7 +26,7 @@ public class ReportRequestPublisherTest {
     private KafkaTemplate<Object, Object> kafkaTemplate;
 
     @Mock
-    private RequestPublisherConfiguration configuration;
+    private RequestPublisherProperties properties;
 
     @Mock
     private GenericReportRequest reportRequest;
@@ -39,10 +40,8 @@ public class ReportRequestPublisherTest {
 
     @Test
     public void testPublish() {
-        doReturn(message).when(publisher).buildMessage(reportRequest);
         publisher.publish(reportRequest);
-        verify(publisher).buildMessage(reportRequest);
-        verify(kafkaTemplate).flush();
+        verify(kafkaTemplate).executeInTransaction(any());
     }
 
     @Test
@@ -53,8 +52,8 @@ public class ReportRequestPublisherTest {
 
     @Test
     public void testBuildMessage() {
-        doReturn("name").when(configuration).getSenderName();
-        doReturn("id").when(configuration).getSenderId();
+        doReturn("name").when(properties).getSenderName();
+        doReturn("id").when(properties).getSenderId();
         Message<GenericReportRequest> message = publisher.buildMessage(reportRequest);
         assertThat(message.getHeaders().get(KafkaAdditionalHeaders.SENDER_NAME)).isEqualTo("name");
         assertThat(message.getHeaders().get(KafkaAdditionalHeaders.SENDER_ID)).isEqualTo("id");

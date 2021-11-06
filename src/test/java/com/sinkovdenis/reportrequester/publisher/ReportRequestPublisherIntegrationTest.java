@@ -3,7 +3,9 @@ package com.sinkovdenis.reportrequester.publisher;
 import com.sinkovdenis.reportrequester.GenericTest;
 import com.sinkovdenis.reportrequester.TestSinglePartitionTopicHelper;
 import com.sinkovdenis.reportrequester.model.ByDateReportRequest;
+import com.sinkovdenis.reportrequester.model.ByIdsReportRequest;
 import com.sinkovdenis.reportrequester.model.GenericReportRequest;
+import com.sinkovdenis.reportrequester.model.ReportType;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.concurrent.TimeUnit;
 
+import static com.sinkovdenis.reportrequester.TestData.createByDateReportRequest;
+import static com.sinkovdenis.reportrequester.TestData.createByIdsReportRequest;
 import static com.sinkovdenis.reportrequester.publisher.ReportRequestPublisherTestParams.ANY_GROUP;
 import static com.sinkovdenis.reportrequester.publisher.ReportRequestPublisherTestParams.REPORT_REQUEST_TOPIC;
 
@@ -44,7 +48,8 @@ public class ReportRequestPublisherIntegrationTest extends GenericTest {
 
     private TestSinglePartitionTopicHelper helper;
 
-    private final static GenericReportRequest REPORT_REQUEST = ByDateReportRequest.builder().build();
+    private static ByDateReportRequest BY_DATE_REPORT_REQUEST;
+    private static ByIdsReportRequest BY_IDS_REPORT_REQUEST;
 
     @Before
     public void setUp() {
@@ -53,13 +58,26 @@ public class ReportRequestPublisherIntegrationTest extends GenericTest {
                 TimeUnit.SECONDS.toMillis(1)
         );
         helper.waitListeners(kafkaListenerEndpointRegistry);
+
+        BY_DATE_REPORT_REQUEST = createByDateReportRequest();
+        BY_IDS_REPORT_REQUEST = createByIdsReportRequest();
     }
 
     @Test
-    public void testPublish() throws Exception {
+    public void testPublish_byDateReportRequest() throws Exception {
         helper.assertEmpty(REPORT_REQUEST_TOPIC, ANY_GROUP);
 
-        publisher.publish(REPORT_REQUEST);
+        publisher.publish(BY_DATE_REPORT_REQUEST);
+
+        TimeUnit.SECONDS.sleep(5);
+        helper.assertOne(REPORT_REQUEST_TOPIC, ANY_GROUP);
+    }
+
+    @Test
+    public void testPublish_byIdsReportRequest() throws Exception {
+        helper.assertEmpty(REPORT_REQUEST_TOPIC, ANY_GROUP);
+
+        publisher.publish(BY_IDS_REPORT_REQUEST);
 
         TimeUnit.SECONDS.sleep(5);
         helper.assertOne(REPORT_REQUEST_TOPIC, ANY_GROUP);

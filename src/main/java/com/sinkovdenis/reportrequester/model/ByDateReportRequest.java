@@ -8,15 +8,16 @@ import java.util.Date;
 
 import static com.sinkovdenis.reportrequester.model.FormatPatterns.DATE_TIME;
 
+@Data
 @SuperBuilder
-@Getter
-@ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ByDateReportRequest extends GenericReportRequest {
+    @NonNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME)
     private Date from;
+    @NonNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME)
     private Date to;
 }

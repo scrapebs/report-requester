@@ -1,9 +1,9 @@
 spring:
     application:
-        name: report_requester
+        name: report-requester
 kafka:
     bootstrap-servers: ${spring.embedded.kafka.brokers}
     producer:
-        topic: report-request
+        topic: reports.requests
         sender-id: report-requester
         sender-name: report-requester

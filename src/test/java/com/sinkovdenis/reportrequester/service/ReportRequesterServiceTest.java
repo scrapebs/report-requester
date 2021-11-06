@@ -2,7 +2,6 @@ package com.sinkovdenis.reportrequester.service;
 
 import com.sinkovdenis.reportrequester.model.ByDateReportRequest;
 import com.sinkovdenis.reportrequester.model.ByIdsReportRequest;
-import com.sinkovdenis.reportrequester.model.GenericReportRequest;
 import com.sinkovdenis.reportrequester.publisher.ReportRequestPublisher;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +12,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ReportRequestServiceTest {
+public class ReportRequesterServiceTest {
 
     @Mock
     private ReportRequestPublisher publisher;
@@ -25,7 +24,7 @@ public class ReportRequestServiceTest {
     private ByIdsReportRequest byIdsReportRequest;
 
     @InjectMocks
-    private ReportRequestService service;
+    private ReportRequesterService service;
 
     @Test
     public void testRequest_byDate() {

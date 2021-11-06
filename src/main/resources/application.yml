@@ -1,9 +1,12 @@
+server:
+    port: 8081
 spring:
     application:
-        name: report_requester
+        name: report-requester
 kafka:
     bootstrap-servers: localhost:9092
     producer:
-        topic: report-request
+        topic: reports.requests
         sender-id: report-requester
         sender-name: report-requester
+
