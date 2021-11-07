@@ -1,7 +1,7 @@
 package com.sinkovdenis.reportrequester.service;
 
-import com.sinkovdenis.reportrequester.model.ByDateReportRequest;
-import com.sinkovdenis.reportrequester.model.ByIdsReportRequest;
+import com.sinkovdenis.reportrequester.model.request.ByDateReportRequest;
+import com.sinkovdenis.reportrequester.model.request.ByIdsReportRequest;
 import com.sinkovdenis.reportrequester.publisher.ReportRequestPublisher;
 import org.junit.Test;
 import org.junit.runner.RunWith;

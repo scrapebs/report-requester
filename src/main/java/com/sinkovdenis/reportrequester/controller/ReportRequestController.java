@@ -1,7 +1,7 @@
 package com.sinkovdenis.reportrequester.controller;
 
-import com.sinkovdenis.reportrequester.model.ByDateReportRequest;
-import com.sinkovdenis.reportrequester.model.ByIdsReportRequest;
+import com.sinkovdenis.reportrequester.model.request.ByDateReportRequest;
+import com.sinkovdenis.reportrequester.model.request.ByIdsReportRequest;
 import com.sinkovdenis.reportrequester.service.ReportRequesterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

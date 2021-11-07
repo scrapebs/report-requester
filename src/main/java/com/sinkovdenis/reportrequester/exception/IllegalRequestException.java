@@ -1,6 +1,6 @@
 package com.sinkovdenis.reportrequester.exception;
 
-import com.sinkovdenis.reportrequester.model.GenericReportRequest;
+import com.sinkovdenis.reportrequester.model.request.GenericReportRequest;
 
 import static com.sinkovdenis.reportrequester.exception.ErrorMessages.ILLEGAL_REQUEST_MESSAGE;
 

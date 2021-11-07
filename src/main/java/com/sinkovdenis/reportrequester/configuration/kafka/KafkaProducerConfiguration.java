@@ -1,6 +1,6 @@
 package com.sinkovdenis.reportrequester.configuration.kafka;
 
-import com.sinkovdenis.reportrequester.configuration.properties.KafkaProperties;
+import com.sinkovdenis.reportrequester.configuration.kafka.properties.KafkaProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.ProducerConfig;

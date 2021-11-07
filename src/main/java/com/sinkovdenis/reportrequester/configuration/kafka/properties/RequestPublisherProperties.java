@@ -1,4 +1,4 @@
-package com.sinkovdenis.reportrequester.configuration.properties;
+package com.sinkovdenis.reportrequester.configuration.kafka.properties;
 
 import lombok.Getter;
 import lombok.Setter;

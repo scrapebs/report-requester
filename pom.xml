@@ -12,7 +12,7 @@
 	<artifactId>report-requester</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>report-requester</name>
-	<description>Get by REST and send into kafka request to process report</description>
+	<description>Handles REST-requests and send into kafka requests to process reports</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>

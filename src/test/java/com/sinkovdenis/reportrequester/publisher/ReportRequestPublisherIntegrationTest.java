@@ -2,10 +2,9 @@ package com.sinkovdenis.reportrequester.publisher;
 
 import com.sinkovdenis.reportrequester.GenericTest;
 import com.sinkovdenis.reportrequester.TestSinglePartitionTopicHelper;
-import com.sinkovdenis.reportrequester.model.ByDateReportRequest;
-import com.sinkovdenis.reportrequester.model.ByIdsReportRequest;
-import com.sinkovdenis.reportrequester.model.GenericReportRequest;
 import com.sinkovdenis.reportrequester.model.ReportType;
+import com.sinkovdenis.reportrequester.model.request.ByDateReportRequest;
+import com.sinkovdenis.reportrequester.model.request.ByIdsReportRequest;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,8 +58,8 @@ public class ReportRequestPublisherIntegrationTest extends GenericTest {
         );
         helper.waitListeners(kafkaListenerEndpointRegistry);
 
-        BY_DATE_REPORT_REQUEST = createByDateReportRequest();
-        BY_IDS_REPORT_REQUEST = createByIdsReportRequest();
+        BY_DATE_REPORT_REQUEST = createByDateReportRequest(ReportType.SALES_REPORT);
+        BY_IDS_REPORT_REQUEST = createByIdsReportRequest(ReportType.SALES_REPORT);
     }
 
     @Test

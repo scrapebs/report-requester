@@ -1,7 +1,7 @@
 package com.sinkovdenis.reportrequester;
 
-import com.sinkovdenis.reportrequester.model.ByDateReportRequest;
-import com.sinkovdenis.reportrequester.model.ByIdsReportRequest;
+import com.sinkovdenis.reportrequester.model.request.ByDateReportRequest;
+import com.sinkovdenis.reportrequester.model.request.ByIdsReportRequest;
 import com.sinkovdenis.reportrequester.model.ReportType;
 
 import java.time.LocalDateTime;
@@ -19,18 +19,18 @@ public class TestData {
     public static List<String> REQUESTED_IDS = Arrays.asList("1111", "2222", "3333");
     public static String EMAIL_FOR_RESPONSE = "email@gmail.com";
 
-    public static ByDateReportRequest createByDateReportRequest() {
+    public static ByDateReportRequest createByDateReportRequest(ReportType reportType) {
         return ByDateReportRequest.builder()
-                .reportType(ReportType.SALES_REPORT)
+                .reportType(reportType)
                 .from(DATE_FROM)
                 .to(DATE_TO)
                 .email(EMAIL_FOR_RESPONSE)
                 .build();
     }
 
-    public static ByIdsReportRequest createByIdsReportRequest() {
+    public static ByIdsReportRequest createByIdsReportRequest(ReportType reportType) {
         return ByIdsReportRequest.builder()
-                .reportType(ReportType.SALES_REPORT)
+                .reportType(reportType)
                 .ids(REQUESTED_IDS)
                 .email(EMAIL_FOR_RESPONSE)
                 .build();

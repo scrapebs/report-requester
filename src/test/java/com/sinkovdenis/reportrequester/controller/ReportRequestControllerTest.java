@@ -1,7 +1,7 @@
 package com.sinkovdenis.reportrequester.controller;
 
-import com.sinkovdenis.reportrequester.model.ByDateReportRequest;
-import com.sinkovdenis.reportrequester.model.ByIdsReportRequest;
+import com.sinkovdenis.reportrequester.model.request.ByDateReportRequest;
+import com.sinkovdenis.reportrequester.model.request.ByIdsReportRequest;
 import com.sinkovdenis.reportrequester.service.ReportRequesterService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,11 +31,11 @@ public class ReportRequestControllerTest {
         controller.request(byDateReportRequest);
         verify(service).requestReport(byDateReportRequest);
     }
-/*
+
     @Test
     public void testRequest_byIds() {
-        controller.requestByIds(byIdsReportRequest);
+        controller.request(byIdsReportRequest);
         verify(service).requestReport(byIdsReportRequest);
-    }*/
+    }
 
 }

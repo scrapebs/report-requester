@@ -1,8 +1,8 @@
 package com.sinkovdenis.reportrequester.publisher;
 
 import com.sinkovdenis.reportrequester.configuration.kafka.KafkaAdditionalHeaders;
-import com.sinkovdenis.reportrequester.configuration.properties.RequestPublisherProperties;
-import com.sinkovdenis.reportrequester.model.GenericReportRequest;
+import com.sinkovdenis.reportrequester.configuration.kafka.properties.RequestPublisherProperties;
+import com.sinkovdenis.reportrequester.model.request.GenericReportRequest;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;

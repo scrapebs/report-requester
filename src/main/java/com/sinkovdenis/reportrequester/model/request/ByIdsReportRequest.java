@@ -1,4 +1,4 @@
-package com.sinkovdenis.reportrequester.model;
+package com.sinkovdenis.reportrequester.model.request;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
