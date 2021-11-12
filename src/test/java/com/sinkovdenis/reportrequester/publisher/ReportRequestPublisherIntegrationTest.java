@@ -58,8 +58,8 @@ public class ReportRequestPublisherIntegrationTest extends GenericTest {
         );
         helper.waitListeners(kafkaListenerEndpointRegistry);
 
-        BY_DATE_REPORT_REQUEST = createByDateReportRequest(ReportType.SALES_REPORT);
-        BY_IDS_REPORT_REQUEST = createByIdsReportRequest(ReportType.SALES_REPORT);
+        BY_DATE_REPORT_REQUEST = createByDateReportRequest(ReportType.ORDERS_REPORT);
+        BY_IDS_REPORT_REQUEST = createByIdsReportRequest(ReportType.ORDERS_REPORT);
     }
 
     @Test
