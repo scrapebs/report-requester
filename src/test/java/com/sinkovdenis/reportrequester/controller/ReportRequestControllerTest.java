@@ -27,6 +27,12 @@ public class ReportRequestControllerTest {
     private ReportRequestController controller;
 
     @Test
+    public void testReportTypes() {
+        controller.reportTypes();
+        verify(service).showReportTypes();
+    }
+
+    @Test
     public void testRequest_byDate() {
         controller.request(byDateReportRequest);
         verify(service).requestReport(byDateReportRequest);
