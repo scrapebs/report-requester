@@ -11,8 +11,8 @@ import static com.sinkovdenis.reportrequester.model.FormatPatterns.DATE_TIME;
 @Data
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor
 public class ByDateReportRequest extends GenericReportRequest {
     @NonNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME)

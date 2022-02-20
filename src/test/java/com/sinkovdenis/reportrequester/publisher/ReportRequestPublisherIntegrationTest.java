@@ -10,7 +10,6 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.kafka.config.KafkaListenerEndpointRegistry;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.test.EmbeddedKafkaBroker;
 import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.test.annotation.DirtiesContext;
@@ -32,10 +31,7 @@ import static com.sinkovdenis.reportrequester.publisher.ReportRequestPublisherTe
 )
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class ReportRequestPublisherIntegrationTest extends GenericTest {
-
-    @Autowired
-    private KafkaTemplate<Object, Object> kafkaTemplate;
-
+    
     @SpyBean
     private ReportRequestPublisher publisher;
 

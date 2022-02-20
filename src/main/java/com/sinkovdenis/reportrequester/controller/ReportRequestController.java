@@ -6,7 +6,6 @@ import com.sinkovdenis.reportrequester.service.ReportRequesterService;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,7 +33,7 @@ public class ReportRequestController {
     )
     public String request(@RequestBody ByDateReportRequest request) {
         service.requestReport(request);
-        return request.getEmail();
+        return prepareResponseOnSuccessReportRequest(request.getRequestId(), request.getEmail());
     }
 
     @PostMapping("/request/by-ids")
@@ -43,8 +42,12 @@ public class ReportRequestController {
                     @ApiResponse(code = ILLEGAL_REQUEST, message = ILLEGAL_REQUEST_MESSAGE),
             }
     )
-    public ResponseEntity<String> request(@RequestBody ByIdsReportRequest request) {
+    public String request(@RequestBody ByIdsReportRequest request) {
         service.requestReport(request);
-        return ResponseEntity.ok().body(request.getEmail());
+        return prepareResponseOnSuccessReportRequest(request.getRequestId(), request.getEmail());
+    }
+    
+    String prepareResponseOnSuccessReportRequest(Long id, String email) {
+        return "Your request registered with id: " + id + ", results will be sent to " + email;
     }
 }

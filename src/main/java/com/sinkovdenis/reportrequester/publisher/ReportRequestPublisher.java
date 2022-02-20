@@ -20,11 +20,11 @@ public class ReportRequestPublisher {
     private final KafkaTemplate<Object, Object> kafkaTemplate;
     private final RequestPublisherProperties properties;
 
-    public void publish(@NonNull GenericReportRequest reportRequest) {
+    public <R extends GenericReportRequest> void publish(@NonNull R reportRequest) {
         kafkaTemplate.executeInTransaction(operation -> operation.send(buildMessage(reportRequest)));
     }
 
-    Message<GenericReportRequest> buildMessage(@NonNull GenericReportRequest event) {
+    <R extends GenericReportRequest> Message<R> buildMessage(@NonNull R event) {
         return MessageBuilder.withPayload(event)
                 .setHeader(KafkaHeaders.TOPIC, properties.getTopic())
                 .setHeader(KafkaAdditionalHeaders.SENDER_ID, properties.getSenderId())

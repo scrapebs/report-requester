@@ -1,8 +1,11 @@
 package com.sinkovdenis.reportrequester;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sinkovdenis.reportrequester.model.request.ByDateReportRequest;
 import com.sinkovdenis.reportrequester.model.request.ByIdsReportRequest;
 import com.sinkovdenis.reportrequester.model.ReportType;
+import com.sinkovdenis.reportrequester.model.request.GenericReportRequest;
+import com.sinkovdenis.reportrequester.persistence.entity.AcceptedRequestEntity;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -35,4 +38,24 @@ public class TestData {
                 .email(EMAIL_FOR_RESPONSE)
                 .build();
     }
+
+    public static AcceptedRequestEntity createAcceptedRequestEntity() {
+        AcceptedRequestEntity entity = new AcceptedRequestEntity();
+        entity.setRequestSource("source");
+        entity.setCreationDate(new Date());
+        entity.setReportType(ReportType.ORDERS_REPORT);
+        entity.setCreatedBy("creator");
+        return entity;
+    }
+    
+    public static ByDateReportRequest createByDateReportRequest() {
+        ByDateReportRequest request = new ByDateReportRequest();
+        request.setRequestId(100L);
+        request.setReportType(ReportType.ORDERS_REPORT);
+        request.setFrom(DATE_FROM);
+        request.setTo(DATE_TO);
+        request.setEmail("email");
+        return request;
+    }
+    
 }

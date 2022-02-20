@@ -24,7 +24,7 @@ public class GlobalRestControllerAdvice {
     }
 
     @ExceptionHandler(IllegalRequestException.class)
-    public ResponseEntity<String> handleIllegalRequestException(IllegalRequestException error) {
+    public ResponseEntity<String> onError(IllegalRequestException error) {
         log.debug(error.getMessage());
         return ResponseEntity
                 .status(error.getHttpCode())
