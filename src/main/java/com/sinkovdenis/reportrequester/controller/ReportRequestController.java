@@ -3,8 +3,8 @@ package com.sinkovdenis.reportrequester.controller;
 import com.sinkovdenis.reportrequester.model.request.ByDateReportRequest;
 import com.sinkovdenis.reportrequester.model.request.ByIdsReportRequest;
 import com.sinkovdenis.reportrequester.service.ReportRequesterService;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +28,7 @@ public class ReportRequestController {
     @PostMapping("/request/by-date")
     @ApiResponses(
             value = {
-                    @ApiResponse(code = ILLEGAL_REQUEST, message = ILLEGAL_REQUEST_MESSAGE),
+                    @ApiResponse(responseCode = ILLEGAL_REQUEST + "", description = ILLEGAL_REQUEST_MESSAGE),
             }
     )
     public String request(@RequestBody ByDateReportRequest request) {
@@ -39,7 +39,7 @@ public class ReportRequestController {
     @PostMapping("/request/by-ids")
     @ApiResponses(
             value = {
-                    @ApiResponse(code = ILLEGAL_REQUEST, message = ILLEGAL_REQUEST_MESSAGE),
+                    @ApiResponse(responseCode = ILLEGAL_REQUEST + "", description = ILLEGAL_REQUEST_MESSAGE),
             }
     )
     public String request(@RequestBody ByIdsReportRequest request) {
