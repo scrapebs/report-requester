@@ -1,28 +1,42 @@
-server:
-    port: 8081
 spring:
     application:
         name: report-requester
         
     datasource:
         driver-class-name: org.postgresql.Driver
-        url: jdbc:postgresql://localhost:5432/reports
-        username: report_requester
-        password: report_requester
+        url: ${DATABASE_URL}
+        username: ${DATABASE_USERNAME}
+        password: ${DATABASE_PASSWORD}
     jpa:
         database-platform: org.hibernate.dialect.PostgreSQLDialect
         generate-ddl: false
-        hibernate.ddl-auto: validate
-        properties.hibernate.temp.use_jdbc_metadata_defaults: false
-        show-sql: true
+        hibernate:
+            ddl-auto: validate
 
 kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
     producer:
-        topic: reports.requests
-        sender-id: report-requester
-        sender-name: report-requester
+        topic: ${KAFKA_PRODUCER_TOPIC}
+        sender-id: ${KAFKA_PRODUCER_SENDER_ID}
+        sender-name: ${KAFKA_PRODUCER_SENDER_NAME}
+
+server:
+    port: 8081
 
 logging:
     level:
         root: INFO
+
+---
+spring:
+    config:
+        activate:
+            on-profile: dev
+
+    jpa:
+        show-sql: true
+
+logging:
+    level:
+        org.springframework.orm.jpa: DEBUG
+        org.springframework.transaction: TRACE

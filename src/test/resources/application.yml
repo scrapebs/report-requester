@@ -10,8 +10,10 @@ spring:
     jpa:
         database-platform: org.hibernate.dialect.PostgreSQLDialect
         generate-ddl: false
-        hibernate.ddl-auto: validate
-        properties.hibernate.temp.use_jdbc_metadata_defaults: false
+        hibernate:
+            ddl-auto: validate
+            temp:
+                use_jdbc_metadata_defaults: false
         show-sql: true    
 kafka:
     bootstrap-servers: ${spring.embedded.kafka.brokers}
