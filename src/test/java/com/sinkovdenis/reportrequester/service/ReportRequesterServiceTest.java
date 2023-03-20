@@ -6,18 +6,18 @@ import com.sinkovdenis.reportrequester.model.request.ByIdsReportRequest;
 import com.sinkovdenis.reportrequester.persistence.entity.AcceptedRequestEntity;
 import com.sinkovdenis.reportrequester.persistence.repo.AcceptedRequestRepository;
 import com.sinkovdenis.reportrequester.publisher.ReportRequestPublisher;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
-public class ReportRequesterServiceTest {
+@ExtendWith(MockitoExtension.class)
+class ReportRequesterServiceTest {
     
     private static final long TEST_REQUEST_ID = 100L;
     
@@ -37,10 +37,9 @@ public class ReportRequesterServiceTest {
     private ByIdsReportRequest byIdsReportRequest;
     @Mock
     private AcceptedRequestEntity acceptedRequestEntity;
-    
 
     @Test
-    public void testRequest_byDate() {
+    void testRequest_byDate() {
         when(mapper.toAcceptedRequestEntity(byDateReportRequest)).thenReturn(acceptedRequestEntity);
         when(repository.save(acceptedRequestEntity)).thenReturn(acceptedRequestEntity);
         when(acceptedRequestEntity.getRequestId()).thenReturn(TEST_REQUEST_ID);
@@ -54,7 +53,7 @@ public class ReportRequesterServiceTest {
     }
 
     @Test
-    public void testRequest_byIds() {
+    void testRequest_byIds() {
         when(mapper.toAcceptedRequestEntity(byIdsReportRequest)).thenReturn(acceptedRequestEntity);
         when(repository.save(acceptedRequestEntity)).thenReturn(acceptedRequestEntity);
         when(acceptedRequestEntity.getRequestId()).thenReturn(TEST_REQUEST_ID);
@@ -68,7 +67,7 @@ public class ReportRequesterServiceTest {
     }
 
     @Test
-    public void testShowReportTypes() {
+    void testShowReportTypes() {
         assertThat(service.showReportTypes()).isNotBlank();
     }
 }

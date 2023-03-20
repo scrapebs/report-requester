@@ -5,8 +5,8 @@ import com.sinkovdenis.reportrequester.TestSinglePartitionTopicHelper;
 import com.sinkovdenis.reportrequester.model.ReportType;
 import com.sinkovdenis.reportrequester.model.request.ByDateReportRequest;
 import com.sinkovdenis.reportrequester.model.request.ByIdsReportRequest;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.kafka.config.KafkaListenerEndpointRegistry;
@@ -30,7 +30,7 @@ import static com.sinkovdenis.reportrequester.publisher.ReportRequestPublisherTe
         }
 )
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-public class ReportRequestPublisherIntegrationTest extends GenericTest {
+class ReportRequestPublisherIntegrationTest extends GenericTest {
     
     @SpyBean
     private ReportRequestPublisher publisher;
@@ -46,7 +46,7 @@ public class ReportRequestPublisherIntegrationTest extends GenericTest {
     private static ByDateReportRequest BY_DATE_REPORT_REQUEST;
     private static ByIdsReportRequest BY_IDS_REPORT_REQUEST;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         helper = new TestSinglePartitionTopicHelper(
                 embeddedKafkaBroker,
@@ -59,7 +59,7 @@ public class ReportRequestPublisherIntegrationTest extends GenericTest {
     }
 
     @Test
-    public void testPublish_byDateReportRequest() throws Exception {
+    void testPublish_byDateReportRequest() throws Exception {
         helper.assertEmpty(REPORT_REQUEST_TOPIC, ANY_GROUP);
 
         publisher.publish(BY_DATE_REPORT_REQUEST);
@@ -69,7 +69,7 @@ public class ReportRequestPublisherIntegrationTest extends GenericTest {
     }
 
     @Test
-    public void testPublish_byIdsReportRequest() throws Exception {
+    void testPublish_byIdsReportRequest() throws Exception {
         helper.assertEmpty(REPORT_REQUEST_TOPIC, ANY_GROUP);
 
         publisher.publish(BY_IDS_REPORT_REQUEST);

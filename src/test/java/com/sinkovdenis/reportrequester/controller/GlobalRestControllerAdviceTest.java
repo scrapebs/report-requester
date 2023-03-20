@@ -6,8 +6,8 @@ import com.sinkovdenis.reportrequester.exception.IllegalRequestException;
 import com.sinkovdenis.reportrequester.model.request.ByDateReportRequest;
 import com.sinkovdenis.reportrequester.service.ReportRequesterService;
 import lombok.SneakyThrows;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +31,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doThrow;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
-
 @AutoConfigureMockMvc
-public class GlobalRestControllerAdviceTest extends GenericTest {
+class GlobalRestControllerAdviceTest extends GenericTest {
 
     @Autowired
     public MockMvc mockMvc;
@@ -46,7 +45,7 @@ public class GlobalRestControllerAdviceTest extends GenericTest {
     
     private ByDateReportRequest request;
     
-    @Before
+    @BeforeEach
     public void setUp() {
         JacksonTester.initFields(this, new ObjectMapper());
         mockMvc = MockMvcBuilders.standaloneSetup(reportRequestController)
@@ -57,7 +56,7 @@ public class GlobalRestControllerAdviceTest extends GenericTest {
     
     @Test
     @SneakyThrows
-    public void testOnError_ConstraintViolationException() {
+    void testOnError_ConstraintViolationException() {
         doThrow(new ConstraintViolationException(Collections.emptySet())).when(service).requestReport(any());
 
         MockHttpServletResponse response = mockMvc.perform(
@@ -73,7 +72,7 @@ public class GlobalRestControllerAdviceTest extends GenericTest {
 
     @Test
     @SneakyThrows
-    public void testOnError_IllegalRequestException() {
+    void testOnError_IllegalRequestException() {
         doThrow(new IllegalRequestException("error")).when(service).requestReport(any());
 
         MockHttpServletResponse response = mockMvc.perform(

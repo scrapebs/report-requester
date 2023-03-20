@@ -3,12 +3,12 @@ package com.sinkovdenis.reportrequester.publisher;
 import com.sinkovdenis.reportrequester.configuration.kafka.KafkaAdditionalHeaders;
 import com.sinkovdenis.reportrequester.configuration.kafka.properties.RequestPublisherProperties;
 import com.sinkovdenis.reportrequester.model.request.GenericReportRequest;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.messaging.Message;
 
@@ -18,8 +18,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 
-@RunWith(MockitoJUnitRunner.class)
-public class ReportRequestPublisherTest {
+@ExtendWith(MockitoExtension.class)
+class ReportRequestPublisherTest {
 
     @Mock
     private KafkaTemplate<Object, Object> kafkaTemplate;
@@ -35,19 +35,19 @@ public class ReportRequestPublisherTest {
     private ReportRequestPublisher publisher;
 
     @Test
-    public void testPublish() {
+    void testPublish() {
         publisher.publish(reportRequest);
         verify(kafkaTemplate).executeInTransaction(any());
     }
 
     @Test
-    public void testPublish_null() {
+    void testPublish_null() {
         assertThat(catchThrowableOfType(() -> publisher.publish(null),
                 NullPointerException.class)).isNotNull();
     }
 
     @Test
-    public void testBuildMessage() {
+    void testBuildMessage() {
         doReturn("name").when(properties).getSenderName();
         doReturn("id").when(properties).getSenderId();
         Message<GenericReportRequest> message = publisher.buildMessage(reportRequest);
@@ -57,7 +57,7 @@ public class ReportRequestPublisherTest {
     }
 
     @Test
-    public void testBuildMessage_null() {
+    void testBuildMessage_null() {
         assertThat(catchThrowableOfType(() -> publisher.buildMessage(null),
                 NullPointerException.class)).isNotNull();
     }
