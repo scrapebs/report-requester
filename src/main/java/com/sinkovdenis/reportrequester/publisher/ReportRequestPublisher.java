@@ -1,7 +1,7 @@
 package com.sinkovdenis.reportrequester.publisher;
 
 import com.sinkovdenis.reportrequester.configuration.kafka.KafkaAdditionalHeaders;
-import com.sinkovdenis.reportrequester.configuration.kafka.properties.RequestPublisherProperties;
+import com.sinkovdenis.reportrequester.configuration.kafka.ReportRequestPublisherConfiguration;
 import com.sinkovdenis.reportrequester.model.request.GenericReportRequest;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -18,17 +18,16 @@ import java.util.UUID;
 public class ReportRequestPublisher {
 
     private final KafkaTemplate<Object, Object> kafkaTemplate;
-    private final RequestPublisherProperties properties;
+    private final ReportRequestPublisherConfiguration configuration;
 
     public <R extends GenericReportRequest> void publish(@NonNull R reportRequest) {
         kafkaTemplate.executeInTransaction(operation -> operation.send(buildMessage(reportRequest)));
+    //    kafkaTemplate.send(buildMessage(reportRequest));
     }
 
     <R extends GenericReportRequest> Message<R> buildMessage(@NonNull R event) {
         return MessageBuilder.withPayload(event)
-                .setHeader(KafkaHeaders.TOPIC, properties.getTopic())
-                .setHeader(KafkaAdditionalHeaders.SENDER_ID, properties.getSenderId())
-                .setHeader(KafkaAdditionalHeaders.SENDER_NAME, properties.getSenderName())
+                .setHeader(KafkaHeaders.TOPIC, configuration.getTopic())
                 .setHeader(KafkaAdditionalHeaders.MESSAGE_ID, UUID.randomUUID().toString())
                 .build();
     }

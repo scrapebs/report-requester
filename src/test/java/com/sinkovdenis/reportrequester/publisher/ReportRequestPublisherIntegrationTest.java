@@ -64,7 +64,7 @@ class ReportRequestPublisherIntegrationTest extends GenericTest {
 
         publisher.publish(BY_DATE_REPORT_REQUEST);
 
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(5); //NOSONAR
         helper.assertOne(REPORT_REQUEST_TOPIC, ANY_GROUP);
     }
 
@@ -74,7 +74,7 @@ class ReportRequestPublisherIntegrationTest extends GenericTest {
 
         publisher.publish(BY_IDS_REPORT_REQUEST);
 
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(5); //NOSONAR
         helper.assertOne(REPORT_REQUEST_TOPIC, ANY_GROUP);
     }
 }

@@ -1,7 +1,7 @@
 package com.sinkovdenis.reportrequester.publisher;
 
 import com.sinkovdenis.reportrequester.configuration.kafka.KafkaAdditionalHeaders;
-import com.sinkovdenis.reportrequester.configuration.kafka.properties.RequestPublisherProperties;
+import com.sinkovdenis.reportrequester.configuration.kafka.ReportRequestPublisherConfiguration;
 import com.sinkovdenis.reportrequester.model.request.GenericReportRequest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,7 +15,6 @@ import org.springframework.messaging.Message;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowableOfType;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -25,7 +24,7 @@ class ReportRequestPublisherTest {
     private KafkaTemplate<Object, Object> kafkaTemplate;
 
     @Mock
-    private RequestPublisherProperties properties;
+    private ReportRequestPublisherConfiguration configuration;
 
     @Mock
     private GenericReportRequest reportRequest;
@@ -48,11 +47,7 @@ class ReportRequestPublisherTest {
 
     @Test
     void testBuildMessage() {
-        doReturn("name").when(properties).getSenderName();
-        doReturn("id").when(properties).getSenderId();
         Message<GenericReportRequest> message = publisher.buildMessage(reportRequest);
-        assertThat(message.getHeaders().get(KafkaAdditionalHeaders.SENDER_NAME)).isEqualTo("name");
-        assertThat(message.getHeaders().get(KafkaAdditionalHeaders.SENDER_ID)).isEqualTo("id");
         assertThat(message.getHeaders().get(KafkaAdditionalHeaders.MESSAGE_ID).toString()).isNotEmpty();
     }
 

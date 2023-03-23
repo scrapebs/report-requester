@@ -1,7 +1,7 @@
 package com.sinkovdenis.reportrequester.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sinkovdenis.reportrequester.GenericTest;
+import com.sinkovdenis.reportrequester.GenericTestWithoutKafka;
 import com.sinkovdenis.reportrequester.exception.IllegalRequestException;
 import com.sinkovdenis.reportrequester.model.request.ByDateReportRequest;
 import com.sinkovdenis.reportrequester.service.ReportRequesterService;
@@ -32,7 +32,7 @@ import static org.mockito.Mockito.doThrow;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 @AutoConfigureMockMvc
-class GlobalRestControllerAdviceTest extends GenericTest {
+class GlobalRestControllerAdviceTest extends GenericTestWithoutKafka {
 
     @Autowired
     public MockMvc mockMvc;

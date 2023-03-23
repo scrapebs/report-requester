@@ -15,9 +15,7 @@ spring:
         show-sql: true
     main:
         allow-circular-references: true
-kafka:
-    bootstrap-servers: ${spring.embedded.kafka.brokers}
-    producer:
-        topic: reports.requests
-        sender-id: report-requester
-        sender-name: report-requester
+    kafka:
+        bootstrap-servers: ${spring.embedded.kafka.brokers}
+        producer:
+            topic: reports.requests

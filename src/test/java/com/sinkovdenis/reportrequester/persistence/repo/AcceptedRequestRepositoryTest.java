@@ -1,6 +1,6 @@
 package com.sinkovdenis.reportrequester.persistence.repo;
 
-import com.sinkovdenis.reportrequester.GenericTest;
+import com.sinkovdenis.reportrequester.GenericTestWithoutKafka;
 import com.sinkovdenis.reportrequester.persistence.entity.AcceptedRequestEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import static com.sinkovdenis.reportrequester.TestData.createAcceptedRequestEntity;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class AcceptedRequestRepositoryTest extends GenericTest {
+class AcceptedRequestRepositoryTest extends GenericTestWithoutKafka {
     
     @Autowired
     private AcceptedRequestRepository repository;
