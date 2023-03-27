@@ -12,11 +12,15 @@ spring:
         generate-ddl: false
         hibernate:
             ddl-auto: validate
+        open-in-view: false
 
     kafka:
         bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
         producer:
+            transaction-id-prefix: "tx-"
             topic: ${KAFKA_PRODUCER_TOPIC}
+            sender-id: ${KAFKA_PRODUCER_SENDER_ID}
+            sender-name: ${KAFKA_PRODUCER_SENDER_NAME}
 
 server:
     port: 8081

@@ -21,14 +21,15 @@ public class ReportRequestPublisher {
     private final ReportRequestPublisherConfiguration configuration;
 
     public <R extends GenericReportRequest> void publish(@NonNull R reportRequest) {
-        kafkaTemplate.executeInTransaction(operation -> operation.send(buildMessage(reportRequest)));
-    //    kafkaTemplate.send(buildMessage(reportRequest));
+        kafkaTemplate.send(buildMessage(reportRequest));
     }
 
     <R extends GenericReportRequest> Message<R> buildMessage(@NonNull R event) {
         return MessageBuilder.withPayload(event)
                 .setHeader(KafkaHeaders.TOPIC, configuration.getTopic())
                 .setHeader(KafkaAdditionalHeaders.MESSAGE_ID, UUID.randomUUID().toString())
+                .setHeader(KafkaAdditionalHeaders.SENDER_ID, configuration.getSenderId())
+                .setHeader(KafkaAdditionalHeaders.SENDER_NAME, configuration.getSenderName())
                 .build();
     }
 }

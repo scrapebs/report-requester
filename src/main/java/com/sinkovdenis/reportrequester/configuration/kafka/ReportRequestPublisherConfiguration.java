@@ -7,6 +7,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.validation.annotation.Validated;
 
+import javax.validation.constraints.NotBlank;
+
 @Getter
 @Setter
 @ToString
@@ -15,5 +17,10 @@ import org.springframework.validation.annotation.Validated;
 @ConfigurationProperties(prefix = "spring.kafka.producer")
 public class ReportRequestPublisherConfiguration {
 
+    @NotBlank
     private String topic;
+    @NotBlank
+    private String senderId;
+    @NotBlank
+    private String senderName;
 }

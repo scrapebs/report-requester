@@ -1,10 +1,8 @@
 package com.sinkovdenis.reportrequester;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.sinkovdenis.reportrequester.model.ReportType;
 import com.sinkovdenis.reportrequester.model.request.ByDateReportRequest;
 import com.sinkovdenis.reportrequester.model.request.ByIdsReportRequest;
-import com.sinkovdenis.reportrequester.model.ReportType;
-import com.sinkovdenis.reportrequester.model.request.GenericReportRequest;
 import com.sinkovdenis.reportrequester.persistence.entity.AcceptedRequestEntity;
 
 import java.time.LocalDateTime;
@@ -15,9 +13,9 @@ import java.util.List;
 
 public class TestData {
 
-    public static final Date DATE_FROM = Date.from(LocalDateTime.of(2021, 07, 01, 10, 0, 0)
+    public static final Date DATE_FROM = Date.from(LocalDateTime.of(2021, 7, 1, 10, 0, 0)
             .atZone(ZoneId.of("UTC")).toInstant());
-    public static final Date DATE_TO = Date.from(LocalDateTime.of(2021, 07, 02, 10, 0, 0)
+    public static final Date DATE_TO = Date.from(LocalDateTime.of(2021, 7, 2, 10, 0, 0)
             .atZone(ZoneId.of("UTC")).toInstant());
     public static List<String> REQUESTED_IDS = Arrays.asList("1111", "2222", "3333");
     public static String EMAIL_FOR_RESPONSE = "email@gmail.com";

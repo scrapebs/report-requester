@@ -36,7 +36,7 @@ class ReportRequestPublisherTest {
     @Test
     void testPublish() {
         publisher.publish(reportRequest);
-        verify(kafkaTemplate).executeInTransaction(any());
+        verify(kafkaTemplate).send(any(Message.class));
     }
 
     @Test
